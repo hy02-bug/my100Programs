@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void main() {
+vector<int> vi;
+
+vi.push_back(4);
+vi.push_back(5);
+vi.push_back(6);
+vi.push_back(7);
+vi.push_back(8);
+
+vector<int>::iterator x;
+for (x = vi.begin(); x != vi.end(); ++x)
+	cout << *x << endl;
+}
+
+*/Output 
+4
+5
+6
+7
+8 /*
