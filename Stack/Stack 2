@@ -1,0 +1,66 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+struct Data {
+    int no;
+};
+
+void push(stack<Data>& s, int val) {
+    Data d = {val};
+    s.push(d);
+}
+
+void pop(stack<Data>& s) {
+    while (!s.empty()) {
+        s.pop();
+    }
+    cout << "Removing all numbers from the stack..." << endl;
+    cout << "All numbers have been removed from the stack." << endl;
+}
+
+void analysis(stack<Data> s) {
+    int evenCount = 0, oddCount = 0;
+
+    cout << ":: Analysis ::\n";
+    while (!s.empty()) {
+        Data d = s.top();
+        cout << "Value: " << d.no << " - Type: ";
+        if (d.no % 2 == 0) {
+            cout << "Even\n";
+            evenCount++;
+        } else {
+            cout << "Odd\n";
+            oddCount++;
+        }
+        s.pop();
+    }
+
+    cout << "\nTotal Even Values: " << evenCount << endl;
+    cout << "Total Odd Values: " << oddCount << endl;
+}
+
+int main() {
+    stack<Data> s;
+    int size, val;
+
+    cout << "Enter total value to insert: ";
+    cin >> size;
+
+    for (int i = 1; i <= size; i++) {
+        cout << "Enter a value: ";
+        cin >> val;
+        push(s, val);
+    }
+
+    analysis(s);
+    
+    // Question 1(c)
+    pop(s);
+
+    // cout << "\nStack is cleared.\n";
+
+    cout << "\nEnd of program";
+    return 0;
+}
