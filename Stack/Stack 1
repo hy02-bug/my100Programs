@@ -1,0 +1,93 @@
+#include<iostream>
+
+using namespace std;
+
+struct Data {
+    int no;
+    Data* next;
+};
+
+void push(Data*& head, int val) {
+    Data *n = new Data;
+    n->no = val;
+    n->next = NULL;
+        
+    /*insertion process*/
+    n->next = head;
+    head = n;
+
+}
+
+void pop(Data*& head) {
+    while (head != NULL) {
+        Data* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    cout<<"Removing all numbers...\n";
+    cout<<"All numbers have been deleted\n";
+}
+
+void analysis(Data* head) {
+    int evenCount = 0, oddCount = 0;
+
+    cout << ":: Analysis ::\n";
+    while (head != NULL) {
+        cout << "Value: " << head->no << " - Type: ";
+        if (head->no % 2 == 0) {
+            cout << "Even\n";
+            evenCount++;
+        } else {
+            cout << "Odd\n";
+            oddCount++;
+        }
+        head = head->next;
+    }
+
+    cout << "\nTotal Even Values: " << evenCount << endl;
+    cout << "Total Odd Values: " << oddCount << endl;
+}
+
+int main() {
+    Data* head = NULL;
+    int size, val;
+
+    cout << "Enter total value to insert: ";
+    cin >> size;
+
+    for (int i = 1; i <= size; i++) {
+        cout << "Enter a value: ";
+        cin >> val;
+        push(head, val);
+    }
+
+    analysis(head);
+    
+    // Question 1(c)
+    pop(head);
+
+    //cout << "\nStack is cleared.\n";
+
+    cout << "\nEnd of program";
+    return 0;
+}
+
+/* 
+Enter total value to insert: 4
+Enter a value: 3
+Enter a value: 4
+Enter a value: 5
+Enter a value: 6
+Analysis of Stack:
+------------------
+Value: 6 - Type: Even
+Value: 5 - Type: Odd
+Value: 4 - Type: Even
+Value: 3 - Type: Odd
+
+Total Even Values: 2
+Total Odd Values: 2
+
+Stack is cleared.
+
+End of program */
