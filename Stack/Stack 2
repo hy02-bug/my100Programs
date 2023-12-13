@@ -64,3 +64,19 @@ int main() {
     cout << "\nEnd of program";
     return 0;
 }
+/* Output 
+Enter total value to insert: 3
+Enter a value: 1
+Enter a value: 2
+Enter a value: 3
+:: Analysis ::
+Value: 3 - Type: Odd
+Value: 2 - Type: Even
+Value: 1 - Type: Odd
+
+Total Even Values: 1
+Total Odd Values: 2
+Removing all numbers from the stack...
+All numbers have been removed from the stack.
+
+End of program */
