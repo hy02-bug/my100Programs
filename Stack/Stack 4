@@ -1,0 +1,80 @@
+//preprocessor
+#include <iostream>
+#include <string>
+#include <queue>
+
+using namespace  std;
+
+//details of functions involved
+
+class record {
+    public: 
+	string name;
+    float salary;
+    int service;
+};
+void insert(queue<record> & staff, string name [], float salary [],int service[],int size){
+    for( int i = 0 ; i < size;i++){
+        staff.push(record{name[i],salary[i],service[i]});
+    }
+};
+
+void display(queue<record> & staff){
+	queue<record> tempQueue = staff;
+	int count = 1;
+	cout<<" List of Employee "<<endl;
+	cout<<"-----------------"<<endl;
+	    while (!tempQueue.empty()) {
+        const record & employee = tempQueue.front();
+        cout << count<<".Name: " << employee.name << ", Salary: " << employee.salary << ", Service: " << employee.service << endl;
+		tempQueue.pop();
+		count++;
+    }
+} 
+
+void update(queue<record> & staff) {
+    string targetName;
+    cout << "Enter the name of the employee to update: ";
+    cin >> targetName;
+
+    queue<record> tempQueue; // Temporary queue to store updated records
+
+    while (!staff.empty()) {
+        record employee = staff.front();
+        staff.pop();
+
+        if (employee.name == targetName) {
+            cout << "Press [1] for Salary or [2] for Year of Service: ";
+            int choice;
+            cin >> choice;
+
+            if (choice == 1) {
+                cout << "Enter the new salary: ";
+                cin >> employee.salary;
+            } else if (choice == 2) {
+                cout << "Enter the new year of service: ";
+                cin >> employee.service;
+            }
+        }
+
+        tempQueue.push(employee);
+    }
+
+    staff = tempQueue; // Update the original queue
+}      
+int main() {
+    string name [] = {"Ahmad","Siew May","Ravi","John","Mohammad","Jennifer"};
+    float salary [] = {12000.0, 4800.0,6000.0, 5500.0, 14000.0, 11000.0};
+    int service [] = {10,4,12,7,6,5};
+	int size = sizeof(name) / sizeof(name[0]);
+    queue <record> staff;     
+    insert(staff, name, salary, service,size);
+    cout<<"\n # Menu : Current Record # "<<endl;
+    display(staff);
+    cout<<"\n # Menu : Update Record # "<<endl;
+    update(staff);
+    cout<<"\n # Menu : Updated Record # "<<endl;
+    display(staff);     
+    cout<<"\nEnd of program";
+    return 0;
+}
